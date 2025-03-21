@@ -1,0 +1,399 @@
+@import "tailwindcss";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+
+@layer utilities {
+    /* Combined animations */
+    @keyframes float {
+        0% {
+            transform: translateY(0) translateX(0);
+        }
+        50% {
+            transform: translateY(-20px) translateX(10px);
+        }
+        100% {
+            transform: translateY(0) translateX(0);
+        }
+    }
+
+    @keyframes float-mobile {
+        0% {
+            transform: translateY(0) translateX(0);
+        }
+        50% {
+            transform: translateY(-10px) translateX(5px);
+        }
+        100% {
+            transform: translateY(0) translateX(0);
+        }
+    }
+
+    @keyframes float-rotate {
+        0% {
+            transform: translateY(0) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-15px) rotate(180deg);
+        }
+        100% {
+            transform: translateY(0) rotate(360deg);
+        }
+    }
+
+    @keyframes float-rotate-mobile {
+        0% {
+            transform: translateY(0) rotate(0deg) scale(0.6);
+        }
+        50% {
+            transform: translateY(-8px) rotate(180deg) scale(0.6);
+        }
+        100% {
+            transform: translateY(0) rotate(360deg) scale(0.6);
+        }
+    }
+
+    @keyframes float-rotate-xsmall {
+        0% {
+            transform: translateY(0) rotate(0deg) scale(0.4);
+        }
+        50% {
+            transform: translateY(-5px) rotate(180deg) scale(0.4);
+        }
+        100% {
+            transform: translateY(0) rotate(360deg) scale(0.4);
+        }
+    }
+
+    @keyframes pulse {
+        0%,
+        100% {
+            opacity: 0.5;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Circle animations with responsive behavior */
+    .circle-1,
+    .circle-2,
+    .circle-3,
+    .circle-4,
+    .circle-5 {
+        transform-origin: center;
+    }
+
+    /* Desktop animations */
+    @media (min-width: 768px) {
+        .circle-1 {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .circle-2 {
+            animation: float 12s ease-in-out infinite;
+        }
+
+        .circle-3 {
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .circle-4 {
+            animation: float 14s ease-in-out infinite;
+        }
+
+        .circle-5 {
+            animation: float 9s ease-in-out infinite;
+        }
+    }
+
+    /* Mobile animations */
+    @media (max-width: 767px) {
+        .circle-1,
+        .circle-2,
+        .circle-3,
+        .circle-4,
+        .circle-5 {
+            transform: scale(0.6);
+        }
+
+        .circle-1 {
+            animation: float-mobile 8s ease-in-out infinite;
+        }
+
+        .circle-2 {
+            animation: float-mobile 12s ease-in-out infinite;
+        }
+
+        .circle-3 {
+            animation: float-mobile 10s ease-in-out infinite;
+        }
+
+        .circle-4 {
+            animation: float-mobile 14s ease-in-out infinite;
+        }
+
+        .circle-5 {
+            animation: float-mobile 9s ease-in-out infinite;
+        }
+    }
+
+    /* Extra small device animations */
+    @media (max-width: 480px) {
+        .circle-1,
+        .circle-2,
+        .circle-3,
+        .circle-4,
+        .circle-5 {
+            transform: scale(0.4);
+        }
+    }
+
+    /* Shape animations with responsive behavior */
+    .shape-1,
+    .shape-2,
+    .shape-3,
+    .shape-4 {
+        transform-origin: center;
+    }
+
+    /* Desktop animations */
+    @media (min-width: 768px) {
+        .shape-1 {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation: float-rotate 15s linear infinite;
+        }
+
+        .shape-2 {
+            clip-path: polygon(
+                25% 0%,
+                75% 0%,
+                100% 50%,
+                75% 100%,
+                25% 100%,
+                0% 50%
+            );
+            animation: float-rotate 15s linear infinite;
+            animation-delay: -5s;
+        }
+
+        .shape-3 {
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: float-rotate 15s linear infinite;
+            animation-delay: -10s;
+        }
+
+        .shape-4 {
+            animation: float-rotate 15s linear infinite;
+            animation-delay: -3s;
+        }
+    }
+
+    /* Mobile animations */
+    @media (max-width: 767px) {
+        .shape-1 {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation: float-rotate-mobile 15s linear infinite;
+        }
+
+        .shape-2 {
+            clip-path: polygon(
+                25% 0%,
+                75% 0%,
+                100% 50%,
+                75% 100%,
+                25% 100%,
+                0% 50%
+            );
+            animation: float-rotate-mobile 15s linear infinite;
+            animation-delay: -5s;
+        }
+
+        .shape-3 {
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: float-rotate-mobile 15s linear infinite;
+            animation-delay: -10s;
+        }
+
+        .shape-4 {
+            animation: float-rotate-mobile 15s linear infinite;
+            animation-delay: -3s;
+        }
+    }
+
+    /* Extra small device animations */
+    @media (max-width: 480px) {
+        .shape-1 {
+            animation: float-rotate-xsmall 15s linear infinite;
+        }
+
+        .shape-2 {
+            animation: float-rotate-xsmall 15s linear infinite;
+            animation-delay: -5s;
+        }
+
+        .shape-3 {
+            animation: float-rotate-xsmall 15s linear infinite;
+            animation-delay: -10s;
+        }
+
+        .shape-4 {
+            animation: float-rotate-xsmall 15s linear infinite;
+            animation-delay: -3s;
+        }
+    }
+
+    /* Education Section animations - with responsive adjustments */
+    .education-circles div {
+        /* Base sizing for all devices */
+        transform-origin: center;
+    }
+
+    /* Original animations with desktop sizing */
+    @media (min-width: 768px) {
+        .education-circles div:nth-child(1) {
+            animation: pulse 12s ease-in-out infinite;
+        }
+
+        .education-circles div:nth-child(2) {
+            animation: pulse 10s ease-in-out infinite;
+        }
+
+        .education-circles div:nth-child(3) {
+            animation: pulse 14s ease-in-out infinite;
+        }
+
+        .education-circles div:nth-child(4) {
+            transform: rotate(45deg);
+            animation: rotate 20s linear infinite;
+        }
+
+        .education-circles div:nth-child(5) {
+            transform: rotate(45deg);
+            animation: rotate 15s linear infinite reverse;
+        }
+    }
+
+    /* Mobile-specific adjustments */
+    @media (max-width: 767px) {
+        /* Scale down all elements in education circles */
+        .education-circles div {
+            transform: scale(0.6); /* Reduce size by 40% */
+        }
+
+        .education-circles div:nth-child(1) {
+            animation: pulse 12s ease-in-out infinite;
+            /* Position adjustments if needed */
+            top: 10%;
+            left: 10%;
+        }
+
+        .education-circles div:nth-child(2) {
+            animation: pulse 10s ease-in-out infinite;
+            /* Position adjustments if needed */
+            right: 10%;
+        }
+
+        .education-circles div:nth-child(3) {
+            animation: pulse 14s ease-in-out infinite;
+            /* Position adjustments if needed */
+            bottom: 10%;
+        }
+
+        .education-circles div:nth-child(4) {
+            transform: scale(0.5) rotate(45deg); /* Even smaller for this element */
+            animation: rotate 20s linear infinite;
+        }
+
+        .education-circles div:nth-child(5) {
+            transform: scale(0.5) rotate(45deg); /* Even smaller for this element */
+            animation: rotate 15s linear infinite reverse;
+        }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 480px) {
+        .education-circles div {
+            transform: scale(
+                0.4
+            ); /* Reduce size even more for very small screens */
+        }
+
+        /* Adjust positions to keep them in view but not overwhelming */
+        .education-circles div:nth-child(1) {
+            top: 5%;
+            left: 5%;
+        }
+
+        .education-circles div:nth-child(2) {
+            right: 5%;
+            top: 15%;
+        }
+
+        .education-circles div:nth-child(3) {
+            bottom: 5%;
+            left: 15%;
+        }
+    }
+
+    /* Contact Section animations */
+    .contact-particles div {
+        animation: float 8s ease-in-out infinite;
+    }
+
+    .contact-particles div:nth-child(1) {
+        animation-delay: 0s;
+    }
+
+    .contact-particles div:nth-child(2) {
+        animation-delay: -1s;
+    }
+
+    .contact-particles div:nth-child(3) {
+        animation-delay: -2s;
+    }
+
+    .contact-particles div:nth-child(4) {
+        animation-delay: -3s;
+    }
+
+    .contact-particles div:nth-child(5) {
+        animation-delay: -4s;
+    }
+
+    .contact-particles div:nth-child(6) {
+        animation-delay: -5s;
+    }
+
+    .contact-particles div:nth-child(7) {
+        animation-delay: -6s;
+    }
+
+    .contact-waves div:first-child {
+        animation: float 6s ease-in-out infinite;
+        animation-delay: -1s;
+    }
+
+    .contact-waves div:last-child {
+        animation: float 8s ease-in-out infinite;
+    }
+}
