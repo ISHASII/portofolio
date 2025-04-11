@@ -796,16 +796,25 @@
     });
     </script>
 
-    <!-- Testimonial Form Section -->
-    <section class="py-24 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Testimonial Form Section with Certificate-like Background -->
+    <section class="py-24 relative overflow-hidden">
+        <!-- Gradient Background Base -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-300/40 via-indigo-400/30 to-purple-300/40"></div>
+
+        <!-- Glassmorphism Overlay -->
+        <div class="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
+
+        <!-- Subtle Grid Pattern -->
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDAgTCAyMCAwIE0gMCAwIEwgMCAyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-20"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-12">
                 <span class="inline-block px-4 py-1 rounded-full bg-indigo-100 text-indigo-700 text-sm font-medium mb-4">Comment</span>
-                <h2 class="text-4xl font-bold mt-2 mb-4 text-gray-900">Share Your Experience</h2>
+                <h2 class="text-4xl font-bold mt-2 mb-4 text-gray-800">Share Your Experience</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto text-lg">We value your feedback. Let us know how we did!</p>
             </div>
 
-            <div class="bg-white shadow-2xl rounded-3xl overflow-hidden border-0">
+            <div class="bg-white/80 backdrop-blur-md shadow-2xl rounded-3xl overflow-hidden border-0">
                 <div class="p-8 sm:p-10">
                     <form action="{{ route('testimonials.store') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
                         @csrf
@@ -920,7 +929,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- Contact Section -->
     <section id="contact" class="py-24 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden">
