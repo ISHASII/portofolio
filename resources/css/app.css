@@ -11,6 +11,30 @@
         "Noto Color Emoji";
 }
 
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes pulseGlow {
+    0%,
+    100% {
+        opacity: 0.3;
+        filter: blur(12px);
+    }
+    50% {
+        opacity: 0.5;
+        filter: blur(15px);
+    }
+}
+
 @layer utilities {
     /* Combined animations */
     @keyframes float {
@@ -34,6 +58,37 @@
         }
         100% {
             transform: translateY(0) translateX(0);
+        }
+    }
+
+    @layer utilities {
+        .bg-animate {
+            animation: gradientShift 15s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        .glow-effect {
+            animation: pulseGlow 6s ease-in-out infinite;
+        }
+
+        /* Enhanced circle and shape elements */
+        .circle-1,
+        .circle-2,
+        .circle-3,
+        .circle-4,
+        .circle-5,
+        .shape-1,
+        .shape-2,
+        .shape-3,
+        .shape-4 {
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+        }
+
+        .light-beams div {
+            transform-origin: center;
+            animation: pulseGlow 12s ease-in-out infinite;
         }
     }
 

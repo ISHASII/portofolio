@@ -40,52 +40,68 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="pt-20 bg-gradient-to-r from-blue-50 to-indigo-100 min-h-screen flex items-center relative overflow-hidden">
-        <!-- Animated Background Elements -->
+    <!-- Hero Section with Enhanced Creative Blur Gradient Background -->
+    <section id="home" class="pt-20 min-h-screen flex items-center relative overflow-hidden">
+        <!-- Gradient Background Base Layer -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-400/30 via-indigo-300/40 to-purple-400/30 backdrop-blur-xl"></div>
+
+        <!-- Glass Morphism Effect Layer -->
+        <div class="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
+
+        <!-- Animated Background Elements with Enhanced Visual Effects -->
         <div class="absolute inset-0 overflow-hidden">
-            <!-- Circles with Tailwind classes -->
+            <!-- Enhanced Circles with Glassmorphism -->
             <div class="circles">
-                <div class="circle-1 absolute rounded-full bg-blue-500 bg-opacity-10 w-48 h-48 top-[10%] left-[15%]"></div>
-                <div class="circle-2 absolute rounded-full bg-blue-500 bg-opacity-10 w-72 h-72 top-[60%] left-[5%]"></div>
-                <div class="circle-3 absolute rounded-full bg-blue-500 bg-opacity-10 w-36 h-36 top-[20%] right-[10%]"></div>
-                <div class="circle-4 absolute rounded-full bg-blue-500 bg-opacity-10 w-60 h-60 bottom-[10%] right-[20%]"></div>
-                <div class="circle-5 absolute rounded-full bg-blue-500 bg-opacity-10 w-44 h-44 bottom-[30%] left-[30%]"></div>
+                <div class="circle-1 absolute rounded-full bg-gradient-to-r from-blue-400/30 to-indigo-500/30 backdrop-blur-md w-48 h-48 top-[10%] left-[15%] border border-white/20 shadow-lg"></div>
+                <div class="circle-2 absolute rounded-full bg-gradient-to-br from-indigo-400/30 to-purple-500/30 backdrop-blur-md w-72 h-72 top-[60%] left-[5%] border border-white/20 shadow-lg"></div>
+                <div class="circle-3 absolute rounded-full bg-gradient-to-l from-blue-300/30 to-cyan-500/30 backdrop-blur-md w-36 h-36 top-[20%] right-[10%] border border-white/20 shadow-lg"></div>
+                <div class="circle-4 absolute rounded-full bg-gradient-to-tr from-purple-400/30 to-pink-500/30 backdrop-blur-md w-60 h-60 bottom-[10%] right-[20%] border border-white/20 shadow-lg"></div>
+                <div class="circle-5 absolute rounded-full bg-gradient-to-tl from-cyan-400/30 to-blue-500/30 backdrop-blur-md w-44 h-44 bottom-[30%] left-[30%] border border-white/20 shadow-lg"></div>
             </div>
-            <!-- Shapes with Tailwind classes -->
+
+            <!-- Enhanced Shapes with Glassmorphism -->
             <div class="floating-shapes">
-                <div class="shape-1 absolute bg-blue-500 bg-opacity-10 w-16 h-16 top-[15%] left-[30%]"></div>
-                <div class="shape-2 absolute bg-blue-500 bg-opacity-10 w-20 h-20 top-[70%] left-[65%]"></div>
-                <div class="shape-3 absolute bg-blue-500 bg-opacity-10 w-12 h-12 top-[40%] right-[25%]"></div>
-                <div class="shape-4 absolute bg-blue-500 bg-opacity-10 w-16 h-16 bottom-[20%] left-[15%] rounded-tl-3xl rounded-br-3xl rounded-tr-md rounded-bl-md"></div>
+                <div class="shape-1 absolute bg-gradient-to-br from-blue-400/30 to-indigo-500/30 backdrop-blur-md w-16 h-16 top-[15%] left-[30%] border border-white/20 shadow-lg"></div>
+                <div class="shape-2 absolute bg-gradient-to-br from-purple-400/30 to-pink-500/30 backdrop-blur-md w-20 h-20 top-[70%] left-[65%] border border-white/20 shadow-lg"></div>
+                <div class="shape-3 absolute bg-gradient-to-br from-cyan-400/30 to-blue-500/30 backdrop-blur-md w-12 h-12 top-[40%] right-[25%] border border-white/20 shadow-lg"></div>
+                <div class="shape-4 absolute bg-gradient-to-br from-indigo-400/30 to-purple-500/30 backdrop-blur-md w-16 h-16 bottom-[20%] left-[15%] rounded-tl-3xl rounded-br-3xl rounded-tr-md rounded-bl-md border border-white/20 shadow-lg"></div>
             </div>
+
+            <!-- Additional Light Beams for Dynamic Effect -->
+            <div class="light-beams">
+                <div class="absolute top-0 left-1/4 w-64 h-96 bg-gradient-to-b from-blue-400/20 to-transparent transform -rotate-45 blur-3xl"></div>
+                <div class="absolute bottom-0 right-1/4 w-64 h-96 bg-gradient-to-t from-purple-400/20 to-transparent transform rotate-45 blur-3xl"></div>
+            </div>
+
+            <!-- Dynamic Mesh Grid Overlay -->
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDAgTCAyMCAwIE0gMCAwIEwgMCAyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
         </div>
 
         <div class="container mx-auto px-4 py-20 relative z-10">
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="text-blue-500">{{ $profile->name ?? 'Developer' }}</span></h1>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 text-gray-800">Hi, I'm <span class="text-blue-600">{{ $profile->name ?? 'Developer' }}</span></h1>
                     <h2 class="text-2xl md:text-3xl text-gray-700 mb-6">{{ $profile->role ?? 'Web Developer' }}</h2>
                     <p class="text-gray-600 mb-8 text-lg max-w-lg">{{ $profile->bio ?? 'A passionate web developer focused on creating beautiful and functional websites and applications.' }}</p>
                     <div class="flex space-x-4">
                         @if($profile->resume_link ?? false)
-                            <a href="{{ $profile->resume_link }}" class="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Download Resume</a>
+                            <a href="{{ $profile->resume_link }}" class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition shadow-md hover:shadow-lg">Download Resume</a>
                         @endif
-                        <a href="#contact" class="px-6 py-3 border border-blue-500 text-blue-500 rounded-md hover:bg-blue-50 transition">Contact Me</a>
+                        <a href="#contact" class="px-6 py-3 border border-blue-500 text-blue-600 rounded-md hover:bg-blue-50 transition backdrop-blur-sm bg-white/30 shadow-md hover:shadow-lg">Contact Me</a>
                     </div>
                 </div>
                 <div class="md:w-1/2 flex justify-end">
                     <div class="relative">
                         @if($profile->avatar ?? false)
-                            <img src="{{ asset('storage/' . $profile->avatar) }}" alt="{{ $profile->name }}" class="rounded-full w-64 h-64 object-cover border-8 border-white shadow-xl">
+                            <img src="{{ asset('storage/' . $profile->avatar) }}" alt="{{ $profile->name }}" class="rounded-full w-64 h-64 object-cover border-8 border-white/90 shadow-xl">
                         @else
-                            <div class="rounded-full w-64 h-64 bg-gray-300 flex items-center justify-center border-8 border-white shadow-xl">
+                            <div class="rounded-full w-64 h-64 bg-gray-300/90 flex items-center justify-center border-8 border-white/90 shadow-xl backdrop-blur-sm">
                                 <svg class="h-24 w-24 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                                 </svg>
                             </div>
                         @endif
-                        <div class="absolute -bottom-4 -right-4 bg-blue-500 text-white rounded-full p-4">
+                        <div class="absolute -bottom-4 -right-4 bg-blue-600 text-white rounded-full p-4 shadow-lg">
                             <i class="fas fa-code text-2xl"></i>
                         </div>
                     </div>
@@ -268,123 +284,149 @@
         </script>
     </section>
 
-        <!-- Certificate and License Section -->
-        <section id="certificates" class="py-20 bg-gradient-to-r from-blue-50 to-indigo-100">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold mb-4 text-gray-800">Certificates</h2>
-                    <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
-                    <p class="text-gray-600 max-w-2xl mx-auto">My certificates and professional licenses.</p>
-                </div>
+    <!-- Certificate and License Section with Creative Gradient Background -->
+    <section id="certificates" class="py-20 relative overflow-hidden">
+        <!-- Gradient Background Base -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-300/40 via-indigo-400/30 to-purple-300/40 bg-animate"></div>
 
-                <!-- Scrollable container with hidden scrollbar -->
-                <div class="relative">
-                    <div class="flex overflow-x-auto pb-8 space-x-6 snap-x" style="-ms-overflow-style: none; scrollbar-width: none;">
-                        <style>
-                            /* Hide scrollbar for Chrome, Safari and Opera */
-                            .overflow-x-auto::-webkit-scrollbar {
-                                display: none;
-                            }
-                            /* Hide scrollbar for IE, Edge and Firefox */
-                            .overflow-x-auto {
-                                -ms-overflow-style: none;  /* IE and Edge */
-                                scrollbar-width: none;  /* Firefox */
-                            }
-                        </style>
-                        @forelse($certificates as $certificate)
-                            <div class="flex-none w-80 snap-center bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-blue-500">
-                                <!-- Certificate Image -->
-                                <div class="h-48 overflow-hidden bg-gray-50">
-                                    @if($certificate->certificate_logo)
-                                        <img
-                                            src="{{ Storage::url($certificate->certificate_logo) }}"
-                                            alt="{{ $certificate->name }}"
-                                            class="w-full h-full object-cover"
-                                        >
-                                    @else
-                                        <div class="w-full h-full flex items-center justify-center bg-gray-100">
-                                            <span class="text-gray-400">No Image</span>
-                                        </div>
-                                    @endif
-                                </div>
+        <!-- Glassmorphism Overlay -->
+        <div class="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
 
-                                <!-- Certificate Information -->
-                                <div class="p-6">
-                                    <h3 class="text-xl font-bold text-gray-800 mb-2">{{ $certificate->name }}</h3>
-                                    <h4 class="text-lg text-blue-500 mb-3">{{ $certificate->organization }}</h4>
-
-                                    <p class="text-gray-600 mb-4 line-clamp-3">{{ $certificate->description }}</p>
-
-                                    <div class="flex flex-wrap items-center gap-2 text-sm">
-                                        <span class="flex items-center text-gray-500 bg-blue-50 px-3 py-1 rounded-full">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg>
-                                            Verified
-                                        </span>
-
-                                        @if(isset($certificate->issue_date))
-                                            <span class="flex items-center text-gray-500 bg-blue-50 px-3 py-1 rounded-full">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                                </svg>
-                                                {{ \Carbon\Carbon::parse($certificate->issue_date)->format('M Y') }}
-                                            </span>
-                                        @endif
-
-                                        @if(isset($certificate->credential_id))
-                                            <span class="flex items-center text-gray-500 bg-blue-50 px-3 py-1 rounded-full text-xs">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
-                                                </svg>
-                                                ID: {{ $certificate->credential_id }}
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                            <div class="w-full text-center py-8">
-                                <p class="text-gray-500">No certificates or licenses added yet.</p>
-                            </div>
-                        @endforelse
-                    </div>
-
-                    <!-- Navigation buttons -->
-                    <div class="flex justify-center mt-4 space-x-2">
-                        <button class="scroll-btn-left p-2 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 focus:outline-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                            </svg>
-                        </button>
-                        <button class="scroll-btn-right p-2 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 focus:outline-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <!-- Floating Circles -->
+            <div class="circles">
+                <div class="circle-1 absolute rounded-full bg-gradient-to-r from-blue-400/20 to-indigo-500/20 backdrop-blur-md w-40 h-40 top-[15%] left-[10%] border border-white/20"></div>
+                <div class="circle-2 absolute rounded-full bg-gradient-to-tr from-indigo-300/20 to-purple-500/20 backdrop-blur-md w-60 h-60 bottom-[20%] left-[5%] border border-white/20"></div>
+                <div class="circle-3 absolute rounded-full bg-gradient-to-bl from-blue-300/20 to-cyan-500/20 backdrop-blur-md w-32 h-32 top-[30%] right-[15%] border border-white/20"></div>
+                <div class="circle-4 absolute rounded-full bg-gradient-to-tl from-purple-400/20 to-pink-500/20 backdrop-blur-md w-48 h-48 bottom-[10%] right-[10%] border border-white/20"></div>
             </div>
 
-            <!-- Scroll buttons JavaScript -->
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    const scrollContainer = document.querySelector('.overflow-x-auto');
-                    const leftBtn = document.querySelector('.scroll-btn-left');
-                    const rightBtn = document.querySelector('.scroll-btn-right');
+            <!-- Light Beams -->
+            <div class="light-beams">
+                <div class="absolute top-0 left-1/3 w-64 h-96 bg-gradient-to-b from-blue-400/10 to-transparent transform -rotate-45 blur-2xl glow-effect"></div>
+                <div class="absolute bottom-0 right-1/3 w-64 h-96 bg-gradient-to-t from-purple-400/10 to-transparent transform rotate-45 blur-2xl glow-effect"></div>
+            </div>
 
-                    if (leftBtn && rightBtn && scrollContainer) {
-                        leftBtn.addEventListener('click', function() {
-                            scrollContainer.scrollBy({ left: -300, behavior: 'smooth' });
-                        });
+            <!-- Subtle Grid Pattern -->
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDAgTCAyMCAwIE0gMCAwIEwgMCAyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-20"></div>
+        </div>
 
-                        rightBtn.addEventListener('click', function() {
-                            scrollContainer.scrollBy({ left: 300, behavior: 'smooth' });
-                        });
-                    }
-                });
-            </script>
-        </section>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-800">Certificates</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">My certificates and professional licenses.</p>
+            </div>
+
+            <!-- Scrollable container with hidden scrollbar -->
+            <div class="relative">
+                <div class="flex overflow-x-auto pb-8 space-x-6 snap-x certificates-container" style="-ms-overflow-style: none; scrollbar-width: none;">
+                    <style>
+                        /* Hide scrollbar for Chrome, Safari and Opera */
+                        .certificates-container::-webkit-scrollbar {
+                            display: none;
+                        }
+                        /* Hide scrollbar for IE, Edge and Firefox */
+                        .certificates-container {
+                            -ms-overflow-style: none;  /* IE and Edge */
+                            scrollbar-width: none;  /* Firefox */
+                        }
+                    </style>
+                    @forelse($certificates as $certificate)
+                        <div class="flex-none w-80 snap-center bg-white/80 backdrop-blur-md rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-blue-500">
+                            <!-- Certificate Image -->
+                            <div class="h-48 overflow-hidden bg-gray-50/90">
+                                @if($certificate->certificate_logo)
+                                    <img
+                                        src="{{ Storage::url($certificate->certificate_logo) }}"
+                                        alt="{{ $certificate->name }}"
+                                        class="w-full h-full object-cover"
+                                    >
+                                @else
+                                    <div class="w-full h-full flex items-center justify-center bg-gray-100/90">
+                                        <span class="text-gray-400">No Image</span>
+                                    </div>
+                                @endif
+                            </div>
+
+                            <!-- Certificate Information -->
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">{{ $certificate->name }}</h3>
+                                <h4 class="text-lg text-blue-600 mb-3">{{ $certificate->organization }}</h4>
+
+                                <p class="text-gray-600 mb-4 line-clamp-3">{{ $certificate->description }}</p>
+
+                                <div class="flex flex-wrap items-center gap-2 text-sm">
+                                    <span class="flex items-center text-gray-500 bg-blue-100/80 backdrop-blur-sm px-3 py-1 rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        Verified
+                                    </span>
+
+                                    @if(isset($certificate->issue_date))
+                                        <span class="flex items-center text-gray-500 bg-blue-100/80 backdrop-blur-sm px-3 py-1 rounded-full">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                            </svg>
+                                            {{ \Carbon\Carbon::parse($certificate->issue_date)->format('M Y') }}
+                                        </span>
+                                    @endif
+
+                                    @if(isset($certificate->credential_id))
+                                        <span class="flex items-center text-gray-500 bg-blue-100/80 backdrop-blur-sm px-3 py-1 rounded-full text-xs">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
+                                            </svg>
+                                            ID: {{ $certificate->credential_id }}
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="w-full text-center py-8">
+                            <p class="text-gray-500">No certificates or licenses added yet.</p>
+                        </div>
+                    @endforelse
+                </div>
+
+                <!-- Navigation buttons with enhanced styling -->
+                <div class="flex justify-center mt-4 space-x-2">
+                    <button class="scroll-btn-left p-2 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 focus:outline-none transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button class="scroll-btn-right p-2 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 focus:outline-none transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll buttons JavaScript -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const scrollContainer = document.querySelector('.certificates-container');
+                const leftBtn = document.querySelector('.scroll-btn-left');
+                const rightBtn = document.querySelector('.scroll-btn-right');
+
+                if (leftBtn && rightBtn && scrollContainer) {
+                    leftBtn.addEventListener('click', function() {
+                        scrollContainer.scrollBy({ left: -300, behavior: 'smooth' });
+                    });
+
+                    rightBtn.addEventListener('click', function() {
+                        scrollContainer.scrollBy({ left: 300, behavior: 'smooth' });
+                    });
+                }
+            });
+        </script>
+    </section>
 
       <!-- Education Section -->
         <section id="education" class="py-20 bg-gradient-to-br from-white to-blue-50 relative overflow-hidden">
