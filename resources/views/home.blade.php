@@ -7,6 +7,11 @@
 
     <title>{{ $profile->name ?? config('app.name', 'Portfolio') }}</title>
 
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('images/portfolio-icon.png') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ asset('images/portfolio-icon.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/portfolio-icon.png') }}">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -116,7 +121,7 @@
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4">About Me</h2>
                 <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-2xl mx-auto">{{ $profile->bio ?? 'I am a passionate web developer with experience in creating stunning, functional websites and applications.' }}</p>
+                <p class="text-gray-600 max-w-2xl mx-auto">{{ $profile->bio ?? 'I am a passionate web developer with certificates in creating stunning, functional websites and applications.' }}</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
@@ -125,7 +130,7 @@
                         <i class="fas fa-laptop-code text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-2">Web Development</h3>
-                    <p class="text-gray-600">Creating responsive and accessible websites that provide an excellent user experience.</p>
+                    <p class="text-gray-600">Creating responsive and accessible websites that provide an excellent user certificates.</p>
                 </div>
 
                 <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
@@ -810,8 +815,8 @@
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-12">
                 <span class="inline-block px-4 py-1 rounded-full bg-indigo-100 text-indigo-700 text-sm font-medium mb-4">Comment</span>
-                <h2 class="text-4xl font-bold mt-2 mb-4 text-gray-800">Share Your Experience</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto text-lg">We value your feedback. Let us know how we did!</p>
+                <h2 class="text-4xl font-bold mt-2 mb-4 text-gray-800">Leave a Comment to me</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">I'm Open to any comments!</p>
             </div>
 
             <div class="bg-white/80 backdrop-blur-md shadow-2xl rounded-3xl overflow-hidden border-0">
@@ -878,7 +883,7 @@
                                 </div>
                                 <textarea name="content" id="content" rows="4"
                                     class="pl-10 block w-full rounded-xl border-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 px-4 py-3.5 transition duration-300 bg-gray-50 hover:bg-white focus:bg-white"
-                                    required placeholder="Share your experience with us...">{{ old('content') }}</textarea>
+                                    required placeholder="Share your certificates with us...">{{ old('content') }}</textarea>
                             </div>
                             @error('content')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -1016,7 +1021,7 @@
 
                 <div class="md:w-1/2">
                     <div class="bg-white p-10 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
-                        <h3 class="text-2xl font-bold mb-8 text-gray-800">Send Me a Message</h3>
+                        <h3 class="text-2xl font-bold mb-8 text-gray-800">Send Me a Message\</h3>
 
                         <form action="https://formspree.io/f/movejbya" method="POST" class="space-y-6">
                             <div>
@@ -1065,7 +1070,7 @@
                         <a href="#about" class="text-gray-400 hover:text-white transition">About</a>
                         <a href="#skills" class="text-gray-400 hover:text-white transition">Skills</a>
                         <a href="#projects" class="text-gray-400 hover:text-white transition">Projects</a>
-                        <a href="#experience" class="text-gray-400 hover:text-white transition">Experience</a>
+                        <a href="#certificates" class="text-gray-400 hover:text-white transition">Certificates</a>
                         <a href="#education" class="text-gray-400 hover:text-white transition">Education</a>
                         <a href="#testimonials" class="text-gray-400 hover:text-white transition">Comment</a>
                         <a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a>
@@ -1121,13 +1126,13 @@
                     <a href="#about" class="text-white hover:text-blue-300 transition">About</a>
                     <a href="#skills" class="text-white hover:text-blue-300 transition">Skills</a>
                     <a href="#projects" class="text-white hover:text-blue-300 transition">Projects</a>
-                    <a href="#experience" class="text-white hover:text-blue-300 transition">Experience</a>
+                    <a href="#certificates" class="text-white hover:text-blue-300 transition">Certificates</a>
                     <a href="#education" class="text-white hover:text-blue-300 transition">Education</a>
                     <a href="#testimonials" class="text-white hover:text-blue-300 transition">Comment</a>
                     <a href="#contact" class="text-white hover:text-blue-300 transition">Contact</a>
                 </div>
             </div>
-        </div>
+        </div>s
 
         <!-- Back to Top Button -->
         <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-500 text-white p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300">

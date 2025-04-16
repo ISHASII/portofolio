@@ -18,7 +18,7 @@ class HomeController extends Controller
         $profile = Profile::first();
         $projects = Project::orderBy('created_at', 'desc')->get();
         $featuredProjects = Project::where('featured', true)->take(3)->get();
-        $skills = Skill::orderBy('name', 'asc')->get();
+        $skills = Skill::orderBy('created_at', 'asc')->get();
         $experiences = Experience::orderBy('start_date', 'desc')->get();
         $educations = Education::orderBy('start_date', 'desc')->get();
         $testimonials = Testimonial::orderBy('created_at', 'desc')->get();
