@@ -22,7 +22,7 @@
 </head>
 <body class="font-sans antialiased">
     <!-- Header/Navigation -->
-    <header class="bg-white shadow fixed w-full z-10">
+    <header class="bg-white shadow fixed w-full z-50">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold text-gray-800">
                 <a href="#home">{{ $profile->name ?? 'Portfolio' }}</a>
@@ -45,8 +45,37 @@
         </div>
     </header>
 
+    <style>
+        /* Calculate navbar height - adjust the value based on your navbar height */
+        :root {
+            --navbar-height: 70px;
+        }
+
+        /* Ensure the navbar stays on top with a higher z-index */
+        header {
+            z-index: 9999 !important; /* Override any other z-index */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Fix padding for the first section */
+        #home {
+            padding-top: var(--navbar-height) !important;
+        }
+
+        /* Make sure all other sections have proper spacing for the fixed navbar when using anchor links */
+        html {
+            scroll-padding-top: var(--navbar-height);
+            scroll-behavior: smooth;
+        }
+
+        /* Fix for mobile menu to be above all content */
+        #mobileMenu {
+            z-index: 10000 !important;
+        }
+    </style>
+
     <!-- Hero Section with Enhanced Creative Blur Gradient Background -->
-    <section id="home" class="pt-20 min-h-screen flex items-center relative overflow-hidden">
+    <section id="home" class="min-h-screen flex items-center relative overflow-hidden">
         <!-- Gradient Background Base Layer -->
         <div class="absolute inset-0 bg-gradient-to-br from-blue-400/30 via-indigo-300/40 to-purple-400/30 backdrop-blur-xl"></div>
 
@@ -89,9 +118,6 @@
                     <h2 class="text-2xl md:text-3xl text-gray-700 mb-6">{{ $profile->role ?? 'Web Developer' }}</h2>
                     <p class="text-gray-600 mb-8 text-lg max-w-lg">{{ $profile->bio ?? 'A passionate web developer focused on creating beautiful and functional websites and applications.' }}</p>
                     <div class="flex space-x-4">
-                        @if($profile->resume_link ?? false)
-                            <a href="{{ $profile->resume_link }}" class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition shadow-md hover:shadow-lg">Download Resume</a>
-                        @endif
                         <a href="#contact" class="px-6 py-3 border border-blue-500 text-blue-600 rounded-md hover:bg-blue-50 transition backdrop-blur-sm bg-white/30 shadow-md hover:shadow-lg">Contact Me</a>
                     </div>
                 </div>
@@ -1132,7 +1158,7 @@
                     <a href="#contact" class="text-white hover:text-blue-300 transition">Contact</a>
                 </div>
             </div>
-        </div>s
+        </div>
 
         <!-- Back to Top Button -->
         <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-500 text-white p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300">
