@@ -916,33 +916,6 @@
                             @enderror
                         </div>
 
-                        <!-- Avatar Field -->
-                        <div>
-                            <label for="avatar" class="block text-sm font-medium text-gray-700 mb-2">Profile Picture</label>
-                            <div class="mt-2 flex flex-col sm:flex-row items-center gap-4">
-                                <div class="flex-shrink-0">
-                                    <span class="inline-block h-20 w-20 rounded-full overflow-hidden bg-gray-100 border-2 border-indigo-100">
-                                        <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                        </svg>
-                                    </span>
-                                </div>
-                                <div class="w-full">
-                                    <label for="avatar" class="relative cursor-pointer w-full flex items-center justify-center bg-gray-50 rounded-xl font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 px-4 py-3 border-2 border-dashed border-gray-300 hover:border-indigo-300 transition duration-300">
-                                        <div class="flex flex-col items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                            </svg>
-                                            <span>Upload a file or drag and drop</span>
-                                            <span class="text-xs text-gray-500 mt-1">JPG, JPEG, PNG. Max size 2MB</span>
-                                        </div>
-                                        <input id="avatar" name="avatar" type="file" class="sr-only">
-                                    </label>
-                                </div>
-                            </div>
-                            @error('avatar')
-                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
                         </div>
 
                         <!-- Submit Button -->
@@ -1047,7 +1020,7 @@
 
                 <div class="md:w-1/2">
                     <div class="bg-white p-10 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
-                        <h3 class="text-2xl font-bold mb-8 text-gray-800">Send Me a Message\</h3>
+                        <h3 class="text-2xl font-bold mb-8 text-gray-800">Send Me a Message</h3>
 
                         <form action="https://formspree.io/f/movejbya" method="POST" class="space-y-6">
                             <div>
@@ -1130,8 +1103,7 @@
                 </div>
 
                 <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                    <p class="text-gray-400">&copy; {{ date('Y') }} {{ $profile->name ?? 'Portfolio' }}. All Rights Reserved.</p>
-                    <p class="text-gray-500 mt-2 text-sm">Designed and Developed with <i class="fas fa-heart text-red-500"></i></p>
+                    <p class="text-gray-400">&copy; {{ date('Y') }} {{ $profile->name ?? 'Portfolio' }}.</p>
                 </div>
             </div>
         </footer>
