@@ -275,19 +275,55 @@
                 @forelse($projects as $project)
                     @if($counter < 6)
                         <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
-                            <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" loading="lazy"
-                                decoding="async" fetchpriority="low" class="w-full h-48 object-cover">
+                            @php
+                                $coverUrl = $project->cover_image ? asset('storage/' . $project->cover_image) : ($project->images->count() ? asset('storage/' . $project->images->first()->path) : '');
+                            @endphp
+                            @if($coverUrl)
+                                <img src="{{ $coverUrl }}" alt="{{ $project->title }}" loading="lazy" decoding="async"
+                                    fetchpriority="low" class="w-full h-48 object-cover">
+                            @else
+                                <div class="w-full h-48 bg-gradient-to-r from-gray-100 to-gray-200"></div>
+                            @endif
                             <div class="p-6">
                                 <h3 class="text-xl font-bold mb-2">{{ $project->title }}</h3>
                                 <p class="text-gray-600 mb-4">{{ Str::limit($project->description, 100) }}</p>
+
+                                @if($project->techStackArray)
+                                    <div class="mb-4 flex flex-wrap gap-2">
+                                        @foreach($project->techStackArray as $tech)
+                                            <span class="inline-flex items-center px-3 py-1 bg-blue-50 text-sm rounded-full text-blue-700 border border-blue-100">{{ $tech }}</span>
+                                        @endforeach
+                                    </div>
+                                @endif
+
                                 <div class="flex justify-between items-center">
-                                    <span class="text-sm text-blue-500 font-semibold">{{ $project->category }}</span>
-                                    @if($project->project_url)
-                                        <a href="{{ $project->project_url }}" target="_blank"
-                                            class="text-blue-500 hover:text-blue-700">
-                                            <i class="fas fa-external-link-alt"></i> View Project
-                                        </a>
-                                    @endif
+                                    <div></div>
+                                    <div class="flex items-center space-x-3">
+                                        <button type="button"
+                                            class="view-details-btn px-4 py-2 bg-white text-black rounded-full font-black shadow hover:scale-105 transform transition"
+                                            data-title="{{ e($project->title) }}"
+                                            data-description="{{ e($project->description) }}"
+                                            data-tech_stack="{{ $project->tech_stack ?? '' }}"
+                                            data-tech_stack_items="{{ $project->techStackArray ? implode('|', $project->techStackArray) : '' }}"
+                                            data-project_url="{{ $project->project_url ?? '' }}"
+                                            data-github_url="{{ $project->github_url ?? '' }}" data-image_url="{{ $coverUrl }}"
+                                            data-created_at="{{ $project->created_at }}"
+                                            data-image_urls="{{ $project->imageUrls ? implode('|', $project->imageUrls) : '' }}">
+                                            View Details
+                                        </button>
+                                        @if($project->project_url)
+                                            <a href="{{ $project->project_url }}" target="_blank"
+                                                class="text-blue-500 hover:text-blue-700">
+                                                <i class="fas fa-external-link-alt"></i> Open
+                                            </a>
+                                        @endif
+                                        @if($project->github_url)
+                                            <a href="{{ $project->github_url }}" target="_blank"
+                                                class="text-gray-800 hover:text-gray-900">
+                                                <i class="fab fa-github"></i> GitHub
+                                            </a>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -307,19 +343,45 @@
                     @foreach($projects as $project)
                         @if($counter >= 6)
                             <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
-                                <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" loading="lazy"
-                                    decoding="async" fetchpriority="low" class="w-full h-48 object-cover">
+                                @php
+                                    $coverUrl = $project->cover_image ? asset('storage/' . $project->cover_image) : ($project->images->count() ? asset('storage/' . $project->images->first()->path) : '');
+                                @endphp
+                                @if($coverUrl)
+                                    <img src="{{ $coverUrl }}" alt="{{ $project->title }}" loading="lazy" decoding="async"
+                                        fetchpriority="low" class="w-full h-48 object-cover">
+                                @else
+                                    <div class="w-full h-48 bg-gradient-to-r from-gray-100 to-gray-200"></div>
+                                @endif
                                 <div class="p-6">
                                     <h3 class="text-xl font-bold mb-2">{{ $project->title }}</h3>
                                     <p class="text-gray-600 mb-4">{{ Str::limit($project->description, 100) }}</p>
                                     <div class="flex justify-between items-center">
                                         <span class="text-sm text-blue-500 font-semibold">{{ $project->category }}</span>
-                                        @if($project->project_url)
-                                            <a href="{{ $project->project_url }}" target="_blank"
-                                                class="text-blue-500 hover:text-blue-700">
-                                                <i class="fas fa-external-link-alt"></i> View Project
-                                            </a>
-                                        @endif
+                                        <div class="flex items-center space-x-3">
+                                            <button type="button"
+                                                class="view-details-btn px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-black rounded-full font-black shadow hover:scale-105 transform transition"
+                                                data-title="{{ e($project->title) }}"
+                                                data-description="{{ e($project->description) }}"
+                                                data-category="{{ e($project->category) }}"
+                                                data-project_url="{{ $project->project_url ?? '' }}"
+                                                data-github_url="{{ $project->github_url ?? '' }}" data-image_url="{{ $coverUrl }}"
+                                                data-created_at="{{ $project->created_at }}"
+                                                data-image_urls="{{ $project->imageUrls ? implode('|', $project->imageUrls) : '' }}">
+                                                View Details
+                                            </button>
+                                            @if($project->project_url)
+                                                <a href="{{ $project->project_url }}" target="_blank"
+                                                    class="text-blue-500 hover:text-blue-700">
+                                                    <i class="fas fa-external-link-alt"></i> Open
+                                                </a>
+                                            @endif
+                                            @if($project->github_url)
+                                                <a href="{{ $project->github_url }}" target="_blank"
+                                                    class="text-gray-800 hover:text-gray-900">
+                                                    <i class="fab fa-github"></i> GitHub
+                                                </a>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -373,6 +435,353 @@
                 }
             });
         </script>
+
+        <!-- Project Details Modal (compact box) -->
+        <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-6">
+            <div id="projectModalOverlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm z-0"></div>
+
+            <div
+                class="relative z-10 max-w-md w-full bg-white rounded-xl shadow-2xl overflow-hidden transform transition-all">
+                <button id="closeProjectModal"
+                    class="absolute top-3 right-3 bg-white/90 rounded-full p-2 shadow hover:bg-white transition z-20">
+                    <svg class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <div class="p-6 text-center">
+                    <!-- Carousel container -->
+                    <div id="projectCarousel" class="relative w-full mb-4">
+                        <div id="projectSlides" class="overflow-hidden rounded-md">
+                            <!-- slides injected here -->
+                        </div>
+
+                        <a id="carouselGithubBadge" href="#" target="_blank"
+                            class="absolute top-2 right-2 bg-gray-800 text-white p-2 rounded-full shadow hidden"
+                            title="View on GitHub" aria-label="View on GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+
+                        <button id="carouselPrev"
+                            class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-2 shadow hidden">
+                            <svg class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+
+                        <button id="carouselNext"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 rounded-full p-2 shadow hidden">
+                            <svg class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+
+                        <div id="carouselDots" class="flex justify-center mt-3 gap-2"></div>
+                    </div>
+
+                    <h3 id="projectModalTitle" class="text-2xl font-black mb-2 text-gray-900"></h3>
+                    <p id="projectModalCategory"
+                        class="inline-block text-sm text-white bg-gradient-to-r from-yellow-400 to-orange-500 px-3 py-1 rounded-full font-black mb-4">
+                    </p>
+                    <p id="projectModalDescription" class="text-gray-700 mb-4 text-left"></p>
+                    <div id="projectModalTechStack" class="mb-4 flex flex-wrap gap-2"></div>
+                    <p id="projectModalDate" class="text-gray-500 text-sm mb-4">&nbsp;</p>
+
+                    <div class="mt-4 flex justify-center gap-3">
+                        <a id="projectModalLink" href="#" target="_blank"
+                            class="px-4 py-2 bg-blue-400 text-white font-bold rounded-full shadow hidden">Open
+                            Project</a>
+                        <a id="projectModalGithub" href="#" target="_blank"
+                            class="px-4 py-2 bg-gray-800 text-white font-bold rounded-full shadow hidden">GitHub</a>
+                        <button id="projectModalCloseBtn"
+                            class="px-4 py-2 border border-gray-200 rounded-full">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Delegate click handler for project details
+                document.querySelectorAll('.view-details-btn').forEach(btn => {
+                    btn.addEventListener('click', function () {
+                        // Build details object from data- attributes (avoids embedding JSON in attributes)
+                        const details = {
+                            title: this.dataset.title || '',
+                            description: this.dataset.description || '',
+                            category: this.dataset.category || '',
+                            project_url: this.dataset.project_url || null,
+                            github_url: this.dataset.github_url || null,
+                            image_url: this.dataset.image_url || null,
+                            created_at: this.dataset.created_at || null,
+                            tech_stack_items: this.dataset.tech_stack_items || ''
+                        };
+
+                        document.getElementById('projectModalTitle').innerText = details.title || 'Untitled';
+                        document.getElementById('projectModalCategory').innerText = details.category || '';
+                        document.getElementById('projectModalDescription').innerText = details.description || '';
+                        document.getElementById('projectModalDate').innerText = details.created_at ? new Date(details.created_at).toLocaleDateString() : '';
+
+                        // Populate tech stack badges in modal
+                        const techStackRaw = (details.tech_stack_items || '').trim();
+                        const techStackContainer = document.getElementById('projectModalTechStack');
+                        techStackContainer.innerHTML = '';
+                        if (techStackRaw) {
+                            techStackRaw.split('|').filter(Boolean).forEach(t => {
+                                const span = document.createElement('span');
+                                span.className = 'inline-flex items-center px-3 py-1 bg-blue-50 text-sm rounded-full text-blue-700 border border-blue-100 mr-2 mb-2';
+                                span.innerText = t;
+                                techStackContainer.appendChild(span);
+                            });
+                        }
+                        // Build carousel images list from data-image_urls attribute
+                        const imageUrlsRaw = (this.dataset.image_urls || '').trim();
+                        let imageUrls = [];
+
+                        if (imageUrlsRaw) {
+                            imageUrls = imageUrlsRaw.split('|').filter(Boolean);
+                        } else if (details.image_url) {
+                            imageUrls = [details.image_url];
+                        }
+
+                        // Populate carousel
+                        const slidesContainer = document.getElementById('projectSlides');
+                        const dotsContainer = document.getElementById('carouselDots');
+                        const prevBtn = document.getElementById('carouselPrev');
+                        const nextBtn = document.getElementById('carouselNext');
+                        const openLink = document.getElementById('projectModalLink');
+
+                        slidesContainer.innerHTML = '';
+                        dotsContainer.innerHTML = '';
+
+                        imageUrls.forEach((url, index) => {
+                            const slide = document.createElement('div');
+                            slide.className = 'slide w-full';
+                            slide.style.display = index === 0 ? 'block' : 'none';
+
+                            const img = document.createElement('img');
+                            img.src = url;
+                            img.alt = details.title || 'Project image';
+                            img.className = 'w-full h-56 object-cover rounded-md';
+
+                            slide.appendChild(img);
+                            slidesContainer.appendChild(slide);
+
+                            const dot = document.createElement('button');
+                            dot.className = 'w-3 h-3 rounded-full bg-gray-300';
+                            if (index === 0) dot.classList.add('bg-gray-700');
+                            dot.addEventListener('click', () => showSlide(index));
+                            dotsContainer.appendChild(dot);
+                        });
+
+                        function showSlide(i) {
+                            const slides = slidesContainer.querySelectorAll('.slide');
+                            const dots = dotsContainer.querySelectorAll('button');
+                            slides.forEach((s, idx) => s.style.display = idx === i ? 'block' : 'none');
+                            dots.forEach((d, idx) => d.classList.toggle('bg-gray-700', idx === i));
+                            currentIndex = i;
+                        }
+
+                        let currentIndex = 0;
+
+                        if (imageUrls.length > 1) {
+                            prevBtn.classList.remove('hidden');
+                            nextBtn.classList.remove('hidden');
+
+                            prevBtn.onclick = () => showSlide((currentIndex - 1 + imageUrls.length) % imageUrls.length);
+                            nextBtn.onclick = () => showSlide((currentIndex + 1) % imageUrls.length);
+
+                            // optional keyboard support
+                            document.addEventListener('keydown', function (e) {
+                                if (e.key === 'ArrowLeft') prevBtn.click();
+                                if (e.key === 'ArrowRight') nextBtn.click();
+                            });
+
+                            // swipe support
+                            let touchStartX = 0;
+                            slidesContainer.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+                            slidesContainer.addEventListener('touchend', (e) => {
+                                const dist = e.changedTouches[0].screenX - touchStartX;
+                                if (dist > 40) prevBtn.click();
+                                if (dist < -40) nextBtn.click();
+                            }, { passive: true });
+                        } else {
+                            prevBtn.classList.add('hidden');
+                            nextBtn.classList.add('hidden');
+                        }
+
+                        // Normalize and open project URL in a new tab when clicked
+                        function normalizeUrl(u) {
+                            if (!u) return null;
+                            if (/^(https?:)?\/\//i.test(u)) return u;
+                            return 'https://' + u;
+                        }
+
+                        if (details.project_url) {
+                            const projectUrl = normalizeUrl(details.project_url);
+                            openLink.href = projectUrl;
+                            openLink.classList.remove('hidden');
+                            // Explicit click handler as a fallback to ensure it opens
+                            openLink.onclick = (e) => {
+                                e.stopPropagation();
+                                window.open(projectUrl, '_blank', 'noopener,noreferrer');
+                            };
+                        } else {
+                            openLink.href = '#';
+                            openLink.classList.add('hidden');
+                            openLink.onclick = null;
+                        }
+
+                        const githubLink = document.getElementById('projectModalGithub');
+                        const carouselBadgeEl = document.getElementById('carouselGithubBadge');
+                        if (details.github_url) {
+                            const ghUrl = normalizeUrl(details.github_url);
+                            githubLink.href = ghUrl;
+                            githubLink.classList.remove('hidden');
+                            githubLink.onclick = (e) => {
+                                e.stopPropagation();
+                                window.open(ghUrl, '_blank', 'noopener,noreferrer');
+                            };
+                            if (carouselBadgeEl) {
+                                carouselBadgeEl.href = ghUrl;
+                                carouselBadgeEl.classList.remove('hidden');
+                                carouselBadgeEl.onclick = (e) => {
+                                    e.stopPropagation();
+                                    window.open(ghUrl, '_blank', 'noopener,noreferrer');
+                                };
+                            }
+                        } else {
+                            githubLink.href = '#';
+                            githubLink.classList.add('hidden');
+                            githubLink.onclick = null;
+                            if (carouselBadgeEl) {
+                                carouselBadgeEl.href = '#';
+                                carouselBadgeEl.classList.add('hidden');
+                                carouselBadgeEl.onclick = null;
+                            }
+                        }
+
+                        // Show modal (with animation)
+                        const modal = document.getElementById('projectModal');
+                        const overlay = document.getElementById('projectModalOverlay');
+
+                        // Show with enter animation
+                        modal.classList.remove('hidden');
+                        modal.classList.add('flex', 'modal-enter');
+                        overlay.classList.add('overlay-enter');
+                        modal.classList.remove('modal-leave');
+                        overlay.classList.remove('overlay-leave');
+
+                        // Remove enter class after animation ends
+                        const removeEnter = function () {
+                            modal.classList.remove('modal-enter');
+                            modal.removeEventListener('animationend', removeEnter);
+                        };
+                        modal.addEventListener('animationend', removeEnter);
+
+                        // Close handlers with leave animation
+                        const closeModal = () => {
+                            modal.classList.add('modal-leave');
+                            overlay.classList.add('overlay-leave');
+                            modal.classList.remove('modal-enter');
+                            overlay.classList.remove('overlay-enter');
+
+                            const handleLeaveEnd = function () {
+                                modal.classList.add('hidden');
+                                modal.classList.remove('flex', 'modal-leave');
+                                overlay.classList.remove('overlay-leave');
+                                modal.removeEventListener('animationend', handleLeaveEnd);
+                            };
+
+                            modal.addEventListener('animationend', handleLeaveEnd);
+                        };
+
+                        document.getElementById('closeProjectModal').onclick = closeModal;
+                        document.getElementById('projectModalOverlay').onclick = closeModal;
+                        document.getElementById('projectModalCloseBtn').onclick = closeModal;
+
+                        document.addEventListener('keydown', function escHandler(e) {
+                            if (e.key === 'Escape') {
+                                closeModal();
+                                document.removeEventListener('keydown', escHandler);
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
+
+        <style>
+            /* Modal animations */
+            @keyframes modalZoomIn {
+                0% {
+                    transform: scale(0.92);
+                    opacity: 0;
+                }
+
+                60% {
+                    transform: scale(1.03);
+                    opacity: 1;
+                }
+
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes modalZoomOut {
+                0% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+
+                100% {
+                    transform: scale(0.96);
+                    opacity: 0;
+                }
+            }
+
+            .modal-enter {
+                animation: modalZoomIn 360ms cubic-bezier(.2, .9, .2, 1) forwards;
+            }
+
+            .modal-leave {
+                animation: modalZoomOut 200ms ease forwards;
+            }
+
+            /* Overlay fade */
+            @keyframes overlayFadeIn {
+                from {
+                    opacity: 0;
+                }
+
+                to {
+                    opacity: 1;
+                }
+            }
+
+            @keyframes overlayFadeOut {
+                from {
+                    opacity: 1;
+                }
+
+                to {
+                    opacity: 0;
+                }
+            }
+
+            #projectModalOverlay.overlay-enter {
+                animation: overlayFadeIn 280ms ease forwards;
+            }
+
+            #projectModalOverlay.overlay-leave {
+                animation: overlayFadeOut 180ms ease forwards;
+            }
+        </style>
     </section>
 
     <!-- Certificate and License Section with Creative Gradient Background -->

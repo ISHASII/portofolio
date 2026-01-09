@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\ProjectImage;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
@@ -26,20 +27,35 @@ class ProjectController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-            'category' => 'required|string|max:255',
-            'project_url' => 'nullable|string|max:255',
+            'cover_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'detail_images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+            'tech_stack' => 'required|string|max:255',
+            'project_url' => 'nullable|url|max:255',
+            'github_url' => 'nullable|url|max:255',
             'featured' => 'nullable|boolean',
         ]);
 
         $validatedData['featured'] = $request->has('featured');
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('projects', 'public');
-            $validatedData['image'] = $imagePath;
+        // Handle cover image
+        if ($request->hasFile('cover_image')) {
+            $coverPath = $request->file('cover_image')->store('projects/covers', 'public');
+            $validatedData['cover_image'] = $coverPath;
         }
 
-        Project::create($validatedData);
+        $project = Project::create($validatedData);
+
+        // Handle detail images (multiple)
+        if ($request->hasFile('detail_images')) {
+            $position = 0;
+            foreach ($request->file('detail_images') as $file) {
+                $path = $file->store('projects/details', 'public');
+                $project->images()->create([
+                    'path' => $path,
+                    'position' => $position++,
+                ]);
+            }
+        }
 
         return redirect()->route('admin.projects.index')
             ->with('success', 'Project created successfully.');
@@ -47,6 +63,7 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
+        $project->load('images');
         return view('admin.projects.show', compact('project'));
     }
 
@@ -60,20 +77,35 @@ class ProjectController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'category' => 'required|string|max:255',
-            'project_url' => 'nullable|string|max:255',
+            'cover_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'detail_images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+            'tech_stack' => 'required|string|max:255',
+            'project_url' => 'nullable|url|max:255',
+            'github_url' => 'nullable|url|max:255',
             'featured' => 'nullable|boolean',
         ]);
 
         $validatedData['featured'] = $request->has('featured');
 
-        if ($request->hasFile('image')) {
-            if ($project->image) {
-                Storage::disk('public')->delete($project->image);
+        // Handle cover image
+        if ($request->hasFile('cover_image')) {
+            if ($project->cover_image) {
+                Storage::disk('public')->delete($project->cover_image);
             }
-            $imagePath = $request->file('image')->store('projects', 'public');
-            $validatedData['image'] = $imagePath;
+            $coverPath = $request->file('cover_image')->store('projects/covers', 'public');
+            $validatedData['cover_image'] = $coverPath;
+        }
+
+        // Handle new detail images
+        if ($request->hasFile('detail_images')) {
+            $position = $project->images()->count();
+            foreach ($request->file('detail_images') as $file) {
+                $path = $file->store('projects/details', 'public');
+                $project->images()->create([
+                    'path' => $path,
+                    'position' => $position++,
+                ]);
+            }
         }
 
         $project->update($validatedData);
@@ -84,13 +116,33 @@ class ProjectController extends Controller
 
     public function destroy(Project $project)
     {
-        if ($project->image) {
-            Storage::disk('public')->delete($project->image);
+        // delete cover image
+        if ($project->cover_image) {
+            Storage::disk('public')->delete($project->cover_image);
+        }
+
+        // delete detail images files
+        foreach ($project->images as $img) {
+            Storage::disk('public')->delete($img->path);
+            $img->delete();
         }
 
         $project->delete();
 
         return redirect()->route('admin.projects.index')
             ->with('success', 'Project deleted successfully.');
+    }
+
+    // Delete a single project image
+    public function destroyImage(Project $project, \App\Models\ProjectImage $image)
+    {
+        if ($image->project_id !== $project->id) {
+            abort(404);
+        }
+
+        Storage::disk('public')->delete($image->path);
+        $image->delete();
+
+        return redirect()->back()->with('success', 'Project image deleted.');
     }
 }

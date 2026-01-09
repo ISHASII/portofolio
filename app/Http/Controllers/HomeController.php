@@ -16,8 +16,8 @@ class HomeController extends Controller
     public function index()
     {
         $profile = Profile::first();
-        $projects = Project::orderBy('created_at', 'desc')->get();
-        $featuredProjects = Project::where('featured', true)->take(3)->get();
+        $projects = Project::with('images')->orderBy('created_at', 'desc')->get();
+        $featuredProjects = Project::with('images')->where('featured', true)->take(3)->get();
         $skills = Skill::orderBy('created_at', 'asc')->get();
         $experiences = Experience::orderBy('start_date', 'desc')->get();
         $educations = Education::orderBy('start_date', 'desc')->get();

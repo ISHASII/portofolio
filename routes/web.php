@@ -47,6 +47,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 
     // Project routes
     Route::resource('projects', ProjectController::class);
+    // Delete a single project image
+    Route::delete('projects/{project}/images/{image}', [ProjectController::class, 'destroyImage'])->name('projects.images.destroy');
 
     // Skill routes
     Route::resource('skills', SkillController::class);
