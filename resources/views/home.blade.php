@@ -423,6 +423,7 @@
                             // Smooth scroll to hidden projects
                             hiddenProjects.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         } else {
+
                             // Hide projects
                             hiddenProjects.classList.add('hidden');
                             buttonText.textContent = 'Show More Projects';
