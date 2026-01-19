@@ -451,4 +451,35 @@
     .contact-waves div:last-child {
         animation: float 8s ease-in-out infinite;
     }
+
+    /* Scroll reveal utility */
+    .reveal {
+        opacity: 0;
+        transform: translateY(14px) scale(0.98);
+        /* Slower entrance for a more graceful popup (now 1s) */
+        transition: opacity 1000ms cubic-bezier(0.2, 0.9, 0.2, 1),
+            transform 1000ms cubic-bezier(0.2, 0.9, 0.2, 1);
+        /* Allow per-element delays via CSS variable (default 0ms) */
+        transition-delay: var(--delay, 0ms);
+        will-change: opacity, transform;
+    }
+
+    .reveal.in-view {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    /* Backwards compatible attribute-based selector (keeps behavior safe) */
+    .reveal[data-delay] {
+        transition-delay: var(--delay, 0ms);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .reveal,
+        .reveal.in-view {
+            transition: none !important;
+            transform: none !important;
+            opacity: 1 !important;
+        }
+    }
 }

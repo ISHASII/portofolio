@@ -142,7 +142,7 @@
 
         <div class="container mx-auto px-4 py-20 relative z-10">
             <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="md:w-1/2 mb-10 md:mb-0">
+                <div class="md:w-1/2 mb-10 md:mb-0 reveal">
                     <h1 class="text-4xl md:text-6xl font-bold mb-4 text-gray-800">Hi, I'm <span
                             class="text-blue-600">{{ $profile->name ?? 'Developer' }}</span></h1>
                     <h2 class="text-2xl md:text-3xl text-gray-700 mb-6">{{ $profile->role ?? 'Web Developer' }}</h2>
@@ -155,7 +155,7 @@
                             Me</a>
                     </div>
                 </div>
-                <div class="md:w-1/2 flex justify-end">
+                <div class="md:w-1/2 flex justify-end reveal">
                     <div class="relative">
                         @if($profile->avatar ?? false)
                             <img src="{{ asset('storage/' . $profile->avatar) }}" alt="{{ $profile->name }}" loading="eager"
@@ -191,7 +191,7 @@
     <!-- About Section -->
     <section id="about" class="py-20 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 reveal">
                 <h2 class="text-3xl font-bold mb-4">About Me</h2>
                 <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
                 <p class="text-gray-600 max-w-2xl mx-auto">
@@ -199,8 +199,8 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12" data-stagger>
+                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition reveal">
                     <div class="bg-blue-100 text-blue-500 rounded-full p-4 inline-block mb-4">
                         <i class="fas fa-laptop-code text-2xl"></i>
                     </div>
@@ -209,7 +209,7 @@
                         certificates.</p>
                 </div>
 
-                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
+                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition reveal">
                     <div class="bg-blue-100 text-blue-500 rounded-full p-4 inline-block mb-4">
                         <i class="fas fa-mobile-alt text-2xl"></i>
                     </div>
@@ -218,7 +218,7 @@
                     </p>
                 </div>
 
-                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
+                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition reveal">
                     <div class="bg-blue-100 text-blue-500 rounded-full p-4 inline-block mb-4">
                         <i class="fas fa-server text-2xl"></i>
                     </div>
@@ -232,17 +232,17 @@
     <!-- Skills Section -->
     <section id="skills" class="py-20 bg-gray-50">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 reveal">
                 <h2 class="text-3xl font-bold mb-4 text-gray-800">My Skills</h2>
                 <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
                 <p class="text-gray-600 max-w-2xl mx-auto">Here are some of the technologies and skills I've worked
                     with.</p>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6" data-stagger>
                 @forelse($skills as $skill)
                     <div
-                        class="flex flex-col items-center bg-white shadow-md rounded-lg p-6 transition-transform hover:transform hover:scale-105">
+                        class="flex flex-col items-center bg-white shadow-md rounded-lg p-6 transition-transform hover:transform hover:scale-105 reveal">
                         @if($skill->icon)
                             <div class="mb-4">
                                 <img src="{{ Storage::url($skill->icon) }}" alt="{{ $skill->name }}" loading="lazy"
@@ -263,18 +263,18 @@
     <!-- Projects Section -->
     <section id="projects" class="py-20 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 reveal">
                 <h2 class="text-3xl font-bold mb-4">My Projects</h2>
                 <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
                 <p class="text-gray-600 max-w-2xl mx-auto">Here are some of the projects I've worked on.</p>
             </div>
 
             <!-- Initial 6 Projects -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" data-stagger>
                 @php $counter = 0; @endphp
                 @forelse($projects as $project)
                     @if($counter < 6)
-                        <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition reveal">
                             @php
                                 $coverUrl = $project->cover_image ? asset('storage/' . $project->cover_image) : ($project->images->count() ? asset('storage/' . $project->images->first()->path) : '');
                             @endphp
@@ -291,7 +291,8 @@
                                 @if($project->techStackArray)
                                     <div class="mb-4 flex flex-wrap gap-2">
                                         @foreach($project->techStackArray as $tech)
-                                            <span class="inline-flex items-center px-3 py-1 bg-blue-50 text-sm rounded-full text-blue-700 border border-blue-100">{{ $tech }}</span>
+                                            <span
+                                                class="inline-flex items-center px-3 py-1 bg-blue-50 text-sm rounded-full text-blue-700 border border-blue-100">{{ $tech }}</span>
                                         @endforeach
                                     </div>
                                 @endif
@@ -338,11 +339,11 @@
 
             <!-- Hidden Projects (More than 6) -->
             @if(count($projects) > 6)
-                <div id="hidden-projects" class="hidden grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                <div id="hidden-projects" class="hidden grid grid-cols-1 md:grid-cols-3 gap-8 mt-8" data-stagger>
                     @php $counter = 0; @endphp
                     @foreach($projects as $project)
                         @if($counter >= 6)
-                            <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+                            <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition reveal">
                                 @php
                                     $coverUrl = $project->cover_image ? asset('storage/' . $project->cover_image) : ($project->images->count() ? asset('storage/' . $project->images->first()->path) : '');
                                 @endphp
@@ -391,9 +392,9 @@
                 </div>
 
                 <!-- Show More Button -->
-                <div class="text-center mt-12">
+                <div class="text-center mt-12 reveal">
                     <button id="show-more-btn"
-                        class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-300 flex items-center mx-auto">
+                        class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-300 flex items-center mx-auto reveal">
                         <span id="button-text">Show More Projects</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" id="button-icon">
@@ -829,7 +830,7 @@
         </div>
 
         <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-12">
+            <div class="text-center mb-12 reveal">
                 <h2 class="text-4xl font-bold mb-4 text-gray-800">Certificates</h2>
                 <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
                 <p class="text-gray-600 max-w-2xl mx-auto">My certificates and professional licenses.</p>
@@ -837,7 +838,7 @@
 
             <!-- Scrollable container with hidden scrollbar -->
             <div class="relative">
-                <div class="flex overflow-x-auto pb-8 space-x-6 snap-x certificates-container"
+                <div class="flex overflow-x-auto pb-8 space-x-6 snap-x certificates-container" data-stagger
                     style="-ms-overflow-style: none; scrollbar-width: none;">
                     <style>
                         /* Hide scrollbar for Chrome, Safari and Opera */
@@ -855,7 +856,7 @@
                     </style>
                     @forelse($certificates as $certificate)
                         <div
-                            class="flex-none w-80 snap-center bg-white/80 backdrop-blur-md rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-blue-500">
+                            class="flex-none w-80 snap-center bg-white/80 backdrop-blur-md rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-blue-500 reveal">
                             <!-- Certificate Image -->
                             <div class="h-48 overflow-hidden bg-gray-50/90">
                                 @if($certificate->certificate_logo)
@@ -1382,7 +1383,7 @@
             </div>
 
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center mb-12">
+                <div class="text-center mb-12 reveal">
                     <span
                         class="inline-block px-4 py-1 rounded-full bg-indigo-100 text-indigo-700 text-sm font-medium mb-4">Comment</span>
                     <h2 class="text-4xl font-bold mt-2 mb-4 text-gray-800">Leave a Comment to me</h2>
