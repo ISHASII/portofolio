@@ -1,110 +1,179 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav class="bg-white">
+    <!-- Top thin maroon strip -->
+    <div class="bg-[#8b1b10] text-yellow-200 text-xs uppercase text-center py-1">
+        SELAMAT DATANG DI WEBSITE RESMI
+    </div>
+
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('home') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
+        <div class="flex items-center justify-between h-20">
+            <!-- Left: Logo -->
+            <div class="flex items-center gap-6">
+                <a href="{{ route('home') }}" class="flex items-center gap-3">
+                    <x-application-logo class="h-10 w-auto" />
+                    <span
+                        class="hidden md:inline-block font-bold text-lg text-[#8b1b10]">{{ config('app.name', 'Portfolio') }}</span>
+                </a>
+            </div>
+
+            <!-- Center: Navigation Links (desktop) -->
+            <div class="hidden md:flex md:items-center md:space-x-8">
+                <a href="{{ route('home') }}" class="text-gray-700 hover:text-[#8b1b10] transition">Home</a>
+
+                <div class="relative group">
+                    <button class="flex items-center gap-2 text-gray-700 hover:text-[#8b1b10] transition">Profil
+                        <svg class="h-4 w-4 text-gray-500 group-hover:text-[#8b1b10]" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4z" />
+                        </svg>
+                    </button>
+                    <div
+                        class="absolute left-0 mt-3 w-48 bg-white border rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-50">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Visi & Misi</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Struktur</a>
+                    </div>
                 </div>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Home') }}
-                    </x-nav-link>
-                    @auth
-                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-nav-link>
-                    @endauth
+                <a href="#" class="text-gray-700 hover:text-[#8b1b10] transition">Berita Berdampak</a>
+
+                <div class="relative group">
+                    <button class="flex items-center gap-2 text-gray-700 hover:text-[#8b1b10] transition">Kemahasiswaan
+                        <svg class="h-4 w-4 text-gray-500 group-hover:text-[#8b1b10]" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4z" />
+                        </svg>
+                    </button>
+                    <div
+                        class="absolute left-0 mt-3 w-48 bg-white border rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-50">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Kegiatan</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Prestasi</a>
+                    </div>
+                </div>
+
+                <div class="relative group">
+                    <button class="flex items-center gap-2 text-gray-700 hover:text-[#8b1b10] transition">Akademik
+                        <svg class="h-4 w-4 text-gray-500 group-hover:text-[#8b1b10]" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4z" />
+                        </svg>
+                    </button>
+                    <div
+                        class="absolute left-0 mt-3 w-48 bg-white border rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-50">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Program Studi</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Kalender</a>
+                    </div>
+                </div>
+
+                <a href="#" class="text-gray-700 hover:text-[#8b1b10] transition">Riset</a>
+                <a href="#" class="text-gray-700 hover:text-[#8b1b10] transition">PPID</a>
+
+                <div class="relative group">
+                    <button class="flex items-center gap-2 text-gray-700 hover:text-[#8b1b10] transition">Dokumen
+                        <svg class="h-4 w-4 text-gray-500 group-hover:text-[#8b1b10]" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4z" />
+                        </svg>
+                    </button>
+                    <div
+                        class="absolute left-0 mt-3 w-48 bg-white border rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-50">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Form</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Panduan</a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
-                @auth
-                    <x-dropdown align="right" width="48">
-                        <x-slot name="trigger">
-                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                <div>{{ Auth::user()->name }}</div>
-
-                                <div class="ml-1">
-                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                            </button>
-                        </x-slot>
-
-                        <x-slot name="content">
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
-                                    {{ __('Log Out') }}
-                                </x-dropdown-link>
-                            </form>
-                        </x-slot>
-                    </x-dropdown>
-                @else
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-                @endauth
-            </div>
-
-            <!-- Hamburger -->
-            <div class="-mr-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+            <!-- Right: Icons -->
+            <div class="flex items-center gap-4">
+                <button id="nav-search-btn" class="text-gray-600 hover:text-[#8b1b10] transition hidden lg:inline-flex">
+                    <i class="fas fa-search"></i>
                 </button>
+                <button id="nav-theme-toggle" class="text-gray-600 hover:text-[#8b1b10] transition">
+                    <i class="fas fa-moon"></i>
+                </button>
+
+                <!-- Mobile Hamburger -->
+                <div class="md:hidden">
+                    <button id="nav-toggle"
+                        class="p-2 rounded-md text-gray-600 hover:bg-gray-100 hover:text-gray-800 transition">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                {{ __('Home') }}
-            </x-responsive-nav-link>
-            @auth
-                <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
-                    {{ __('Dashboard') }}
-                </x-responsive-nav-link>
-            @endauth
-        </div>
+    <!-- Mobile menu (hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100">
+        <div class="px-4 pt-4 pb-6 space-y-3">
+            <a href="{{ route('home') }}" class="block text-gray-700 py-2">Home</a>
 
-        <!-- Responsive Settings Options -->
-        @auth
-            <div class="pt-4 pb-1 border-t border-gray-200">
-                <div class="px-4">
+            <div class="border-t border-gray-100 pt-3">
+                <button data-toggle="submenu" data-target="#submenu-profil"
+                    class="w-full flex items-center justify-between py-2 text-gray-700">
+                    Profil
+                    <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4z" />
+                    </svg>
+                </button>
+                <div id="submenu-profil" class="hidden pl-4">
+                    <a href="#" class="block py-2 text-gray-600">Visi & Misi</a>
+                    <a href="#" class="block py-2 text-gray-600">Struktur</a>
+                </div>
+            </div>
+
+            <a href="#" class="block text-gray-700 py-2">Berita Berdampak</a>
+
+            <div class="border-t border-gray-100 pt-3">
+                <button data-toggle="submenu" data-target="#submenu-kemahasiswaan"
+                    class="w-full flex items-center justify-between py-2 text-gray-700">Kemahasiswaan
+                    <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4z" />
+                    </svg>
+                </button>
+                <div id="submenu-kemahasiswaan" class="hidden pl-4">
+                    <a href="#" class="block py-2 text-gray-600">Kegiatan</a>
+                    <a href="#" class="block py-2 text-gray-600">Prestasi</a>
+                </div>
+            </div>
+
+            <a href="#" class="block text-gray-700 py-2">Riset</a>
+            <a href="#" class="block text-gray-700 py-2">PPID</a>
+
+            <div class="border-t border-gray-100 pt-3">
+                <button data-toggle="submenu" data-target="#submenu-dokumen"
+                    class="w-full flex items-center justify-between py-2 text-gray-700">Dokumen
+                    <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4z" />
+                    </svg>
+                </button>
+                <div id="submenu-dokumen" class="hidden pl-4">
+                    <a href="#" class="block py-2 text-gray-600">Form</a>
+                    <a href="#" class="block py-2 text-gray-600">Panduan</a>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-gray-100">
+                @auth
                     <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                     <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-                </div>
-
-                <div class="mt-3 space-y-1">
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ route('logout') }}" class="mt-3">
                         @csrf
-                        <x-responsive-nav-link :href="route('logout')"
-                                onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                        </x-responsive-nav-link>
+                        <button type="submit" class="w-full text-left py-2 text-gray-700">Log Out</button>
                     </form>
-                </div>
+                @else
+                    <a href="{{ route('login') }}" class="block text-gray-700 py-2">Log in</a>
+                @endauth
             </div>
-        @else
-            <div class="py-1 border-t border-gray-200">
-                <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
-                    {{ __('Log in') }}
-                </x-responsive-nav-link>
-            </div>
-        @endauth
+        </div>
     </div>
 </nav>

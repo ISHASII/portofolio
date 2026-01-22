@@ -4,6 +4,19 @@
     if (typeof window === "undefined") return;
 
     document.addEventListener("DOMContentLoaded", function () {
+        // Auto-attach .reveal to main headings and paragraphs within sections, with small stagger delay
+        const autoSelector =
+            "section h1, section h2, section h3, section h4, section p";
+        document.querySelectorAll(autoSelector).forEach((el, i) => {
+            if (el.closest("header, nav, footer")) return; // skip nav/header/footer content
+            if (el.classList.contains("no-reveal")) return; // opt-out
+            if (!el.classList.contains("reveal")) el.classList.add("reveal");
+            // only set delay if not already set
+            if (!el.style.getPropertyValue("--delay")) {
+                el.style.setProperty("--delay", `${(i % 10) * 70}ms`);
+            }
+        });
+
         // Respect reduced motion
         if (
             window.matchMedia &&

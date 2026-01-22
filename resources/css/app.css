@@ -6,37 +6,39 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+    --font-sans:
+        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        --font-sans: "Inter", "Instrument Sans", ui-sans-serif, system-ui,
+        sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
-}
+    @keyframes gradientShift {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
 
-@keyframes gradientShift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-@keyframes pulseGlow {
-    0%,
-    100% {
-        opacity: 0.3;
-        filter: blur(12px);
-    }
-    50% {
-        opacity: 0.5;
-        filter: blur(15px);
+    @keyframes pulseGlow {
+        0%,
+        100% {
+            opacity: 0.3;
+            filter: blur(12px);
+        }
+        50% {
+            opacity: 0.5;
+            filter: blur(15px);
+        }
     }
 }
 
 @layer utilities {
-    /* Combined animations */
+    /* Combined animations (moved out of @theme) */
     @keyframes float {
         0% {
             transform: translateY(0) translateX(0);
@@ -61,35 +63,64 @@
         }
     }
 
-    @layer utilities {
-        .bg-animate {
-            animation: gradientShift 15s ease infinite;
-            background-size: 200% 200%;
-        }
+    .bg-animate {
+        animation: gradientShift 15s ease infinite;
+        background-size: 200% 200%;
+    }
 
-        .glow-effect {
-            animation: pulseGlow 6s ease-in-out infinite;
-        }
+    .glow-effect {
+        animation: pulseGlow 6s ease-in-out infinite;
+    }
 
-        /* Enhanced circle and shape elements */
-        .circle-1,
-        .circle-2,
-        .circle-3,
-        .circle-4,
-        .circle-5,
-        .shape-1,
-        .shape-2,
-        .shape-3,
-        .shape-4 {
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-        }
+    /* Enhanced circle and shape elements */
+    .circle-1,
+    .circle-2,
+    .circle-3,
+    .circle-4,
+    .circle-5,
+    .shape-1,
+    .shape-2,
+    .shape-3,
+    .shape-4 {
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    }
 
-        .light-beams div {
-            transform-origin: center;
-            animation: pulseGlow 12s ease-in-out infinite;
-        }
+    .light-beams div {
+        transform-origin: center;
+        animation: pulseGlow 12s ease-in-out infinite;
+    }
+
+    .soft-card {
+        background: #fff;
+        box-shadow: 0 4px 32px 0 rgba(0, 0, 0, 0.08);
+        border-radius: 1.25rem;
+        border: 1px solid #e5e7eb;
+    }
+    .soft-border {
+        border-color: #e5e7eb;
+    }
+    .soft-shadow {
+        box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.04);
+    }
+    .accent {
+        color: #00e0d3;
+    }
+    .accent-bg {
+        background: #00e0d3;
+    }
+    .accent-dark {
+        color: #00bfae;
+    }
+    .primary {
+        color: #222;
+    }
+    .font-sans {
+        font-family: var(--font-sans);
+    }
+    .transition-spacing {
+        transition-property: margin, padding;
     }
 
     @keyframes float-rotate {
@@ -158,30 +189,24 @@
         transform-origin: center;
     }
 
-    /* Desktop animations */
     @media (min-width: 768px) {
         .circle-1 {
             animation: float 8s ease-in-out infinite;
         }
-
         .circle-2 {
             animation: float 12s ease-in-out infinite;
         }
-
         .circle-3 {
             animation: float 10s ease-in-out infinite;
         }
-
         .circle-4 {
             animation: float 14s ease-in-out infinite;
         }
-
         .circle-5 {
             animation: float 9s ease-in-out infinite;
         }
     }
 
-    /* Mobile animations */
     @media (max-width: 767px) {
         .circle-1,
         .circle-2,
@@ -190,29 +215,23 @@
         .circle-5 {
             transform: scale(0.6);
         }
-
         .circle-1 {
             animation: float-mobile 8s ease-in-out infinite;
         }
-
         .circle-2 {
             animation: float-mobile 12s ease-in-out infinite;
         }
-
         .circle-3 {
             animation: float-mobile 10s ease-in-out infinite;
         }
-
         .circle-4 {
             animation: float-mobile 14s ease-in-out infinite;
         }
-
         .circle-5 {
             animation: float-mobile 9s ease-in-out infinite;
         }
     }
 
-    /* Extra small device animations */
     @media (max-width: 480px) {
         .circle-1,
         .circle-2,
@@ -223,7 +242,6 @@
         }
     }
 
-    /* Shape animations with responsive behavior */
     .shape-1,
     .shape-2,
     .shape-3,
@@ -231,13 +249,11 @@
         transform-origin: center;
     }
 
-    /* Desktop animations */
     @media (min-width: 768px) {
         .shape-1 {
             clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
             animation: float-rotate 15s linear infinite;
         }
-
         .shape-2 {
             clip-path: polygon(
                 25% 0%,
@@ -250,26 +266,22 @@
             animation: float-rotate 15s linear infinite;
             animation-delay: -5s;
         }
-
         .shape-3 {
             clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
             animation: float-rotate 15s linear infinite;
             animation-delay: -10s;
         }
-
         .shape-4 {
             animation: float-rotate 15s linear infinite;
             animation-delay: -3s;
         }
     }
 
-    /* Mobile animations */
     @media (max-width: 767px) {
         .shape-1 {
             clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
             animation: float-rotate-mobile 15s linear infinite;
         }
-
         .shape-2 {
             clip-path: polygon(
                 25% 0%,
@@ -282,128 +294,98 @@
             animation: float-rotate-mobile 15s linear infinite;
             animation-delay: -5s;
         }
-
         .shape-3 {
             clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
             animation: float-rotate-mobile 15s linear infinite;
             animation-delay: -10s;
         }
-
         .shape-4 {
             animation: float-rotate-mobile 15s linear infinite;
             animation-delay: -3s;
         }
     }
 
-    /* Extra small device animations */
     @media (max-width: 480px) {
         .shape-1 {
             animation: float-rotate-xsmall 15s linear infinite;
         }
-
         .shape-2 {
             animation: float-rotate-xsmall 15s linear infinite;
             animation-delay: -5s;
         }
-
         .shape-3 {
             animation: float-rotate-xsmall 15s linear infinite;
             animation-delay: -10s;
         }
-
         .shape-4 {
             animation: float-rotate-xsmall 15s linear infinite;
             animation-delay: -3s;
         }
     }
 
-    /* Education Section animations - with responsive adjustments */
     .education-circles div {
-        /* Base sizing for all devices */
         transform-origin: center;
     }
 
-    /* Original animations with desktop sizing */
     @media (min-width: 768px) {
         .education-circles div:nth-child(1) {
             animation: pulse 12s ease-in-out infinite;
         }
-
         .education-circles div:nth-child(2) {
             animation: pulse 10s ease-in-out infinite;
         }
-
         .education-circles div:nth-child(3) {
             animation: pulse 14s ease-in-out infinite;
         }
-
         .education-circles div:nth-child(4) {
             transform: rotate(45deg);
             animation: rotate 20s linear infinite;
         }
-
         .education-circles div:nth-child(5) {
             transform: rotate(45deg);
             animation: rotate 15s linear infinite reverse;
         }
     }
 
-    /* Mobile-specific adjustments */
     @media (max-width: 767px) {
-        /* Scale down all elements in education circles */
         .education-circles div {
-            transform: scale(0.6); /* Reduce size by 40% */
+            transform: scale(0.6);
         }
-
         .education-circles div:nth-child(1) {
             animation: pulse 12s ease-in-out infinite;
-            /* Position adjustments if needed */
             top: 10%;
             left: 10%;
         }
-
         .education-circles div:nth-child(2) {
             animation: pulse 10s ease-in-out infinite;
-            /* Position adjustments if needed */
             right: 10%;
         }
-
         .education-circles div:nth-child(3) {
             animation: pulse 14s ease-in-out infinite;
-            /* Position adjustments if needed */
             bottom: 10%;
         }
-
         .education-circles div:nth-child(4) {
-            transform: scale(0.5) rotate(45deg); /* Even smaller for this element */
+            transform: scale(0.5) rotate(45deg);
             animation: rotate 20s linear infinite;
         }
-
         .education-circles div:nth-child(5) {
-            transform: scale(0.5) rotate(45deg); /* Even smaller for this element */
+            transform: scale(0.5) rotate(45deg);
             animation: rotate 15s linear infinite reverse;
         }
     }
 
-    /* Extra small devices */
     @media (max-width: 480px) {
         .education-circles div {
-            transform: scale(
-                0.4
-            ); /* Reduce size even more for very small screens */
+            transform: scale(0.4);
         }
-
-        /* Adjust positions to keep them in view but not overwhelming */
         .education-circles div:nth-child(1) {
             top: 5%;
             left: 5%;
         }
-
         .education-circles div:nth-child(2) {
             right: 5%;
             top: 15%;
         }
-
         .education-circles div:nth-child(3) {
             bottom: 5%;
             left: 15%;
@@ -414,40 +396,31 @@
     .contact-particles div {
         animation: float 8s ease-in-out infinite;
     }
-
     .contact-particles div:nth-child(1) {
         animation-delay: 0s;
     }
-
     .contact-particles div:nth-child(2) {
         animation-delay: -1s;
     }
-
     .contact-particles div:nth-child(3) {
         animation-delay: -2s;
     }
-
     .contact-particles div:nth-child(4) {
         animation-delay: -3s;
     }
-
     .contact-particles div:nth-child(5) {
         animation-delay: -4s;
     }
-
     .contact-particles div:nth-child(6) {
         animation-delay: -5s;
     }
-
     .contact-particles div:nth-child(7) {
         animation-delay: -6s;
     }
-
     .contact-waves div:first-child {
         animation: float 6s ease-in-out infinite;
         animation-delay: -1s;
     }
-
     .contact-waves div:last-child {
         animation: float 8s ease-in-out infinite;
     }
@@ -456,24 +429,19 @@
     .reveal {
         opacity: 0;
         transform: translateY(14px) scale(0.98);
-        /* Slower entrance for a more graceful popup (now 1s) */
-        transition: opacity 1000ms cubic-bezier(0.2, 0.9, 0.2, 1),
+        transition:
+            opacity 1000ms cubic-bezier(0.2, 0.9, 0.2, 1),
             transform 1000ms cubic-bezier(0.2, 0.9, 0.2, 1);
-        /* Allow per-element delays via CSS variable (default 0ms) */
         transition-delay: var(--delay, 0ms);
         will-change: opacity, transform;
     }
-
     .reveal.in-view {
         opacity: 1;
         transform: translateY(0) scale(1);
     }
-
-    /* Backwards compatible attribute-based selector (keeps behavior safe) */
     .reveal[data-delay] {
         transition-delay: var(--delay, 0ms);
     }
-
     @media (prefers-reduced-motion: reduce) {
         .reveal,
         .reveal.in-view {
