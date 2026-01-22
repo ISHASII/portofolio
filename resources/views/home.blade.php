@@ -23,41 +23,148 @@
 </head>
 
 <body class="font-sans antialiased">
-    <!-- Header/Navigation -->
-    <header class="bg-white shadow fixed w-full z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-gray-800">
-                <a href="#home">{{ $profile->name ?? 'Portfolio' }}</a>
+    <!-- Header/Navigation - Transparent Style -->
+    <header class="fixed w-full z-50">
+        <!-- Single unified navbar with diagonal cut -->
+        <div class="relative h-16 overflow-visible">
+            <!-- Full transparent blue background -->
+            <div class="absolute inset-0 bg-blue-600/30 backdrop-blur-lg"></div>
+
+            <!-- White/transparent diagonal section on left for logo -->
+            <div class="absolute inset-0 bg-white/5 backdrop-blur-lg z-20"
+                style="clip-path: polygon(0 0, 450px 0, 380px 100%, 0% 100%);"></div>
+
+            <!-- Content container -->
+            <div class="relative h-full max-w-7xl mx-auto px-4 lg:px-6">
+                <div class="flex justify-between items-center h-full">
+                    <!-- Logo Section (in white area) -->
+                    <div class="flex items-center space-x-4 z-10">
+                        <!-- Logo/Icon -->
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-md">
+                            <span class="text-white font-bold text-lg">{{ substr($profile->name ?? 'P', 0, 1) }}</span>
+                        </div>
+                        <!-- Name/Title -->
+                        <div class="flex flex-col">
+                            <h1 class="text-sm font-bold text-blue-600 tracking-wide uppercase leading-tight">
+                                {{ $profile->name ?? 'PORTFOLIO' }}
+                            </h1>
+                            <span
+                                class="text-xs text-gray-600 uppercase tracking-wider">{{ $profile->role ?? 'Web Developer' }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Navigation + Social Icons (in maroon area) -->
+                    <div class="flex items-center space-x-6 relative z-20">
+                        <!-- Desktop Navigation Menu (flattened) -->
+                        <nav class="hidden lg:flex items-center space-x-4 relative z-20">
+                            <a href="#home"
+                                class="relative z-30 px-3 py-4 text-white/90 font-medium hover:bg-white/15 hover:text-white rounded-lg transition-all duration-200">Home</a>
+                            <a href="#about"
+                                class="relative z-30 px-3 py-4 text-white/90 font-medium hover:bg-white/15 hover:text-white rounded-lg transition-all duration-200">About</a>
+                            <a href="#skills"
+                                class="relative z-30 px-3 py-4 text-white/90 font-medium hover:bg-white/15 hover:text-white rounded-lg transition-all duration-200">Skills</a>
+                            <a href="#projects"
+                                class="relative z-30 px-3 py-4 text-white/90 font-medium hover:bg-white/15 hover:text-white rounded-lg transition-all duration-200">Projects</a>
+                            <a href="#certificates"
+                                class="relative z-30 px-3 py-4 text-white/90 font-medium hover:bg-white/15 hover:text-white rounded-lg transition-all duration-200">Certificates</a>
+                            <a href="#education"
+                                class="relative z-30 px-3 py-4 text-white/90 font-medium hover:bg-white/15 hover:text-white rounded-lg transition-all duration-200">Academic</a>
+                            <a href="#testimonials"
+                                class="relative z-30 px-3 py-4 text-white/90 font-medium hover:bg-white/15 hover:text-white rounded-lg transition-all duration-200">Comment</a>
+                            <a href="#contact"
+                                class="relative z-30 px-3 py-4 text-white/90 font-medium hover:bg-white/15 hover:text-white rounded-lg transition-all duration-200">Contact</a>
+
+                        </nav>
+
+                        <!-- Social Icons -->
+                        <div class="hidden lg:flex items-center space-x-3 relative z-30">
+                            @if($profile->github)
+                                <a href="{{ $profile->github }}" target="_blank" rel="noopener"
+                                    class="relative z-30 text-white hover:text-gray-200 transition p-2 rounded-full bg-white/5 hover:bg-white/10"
+                                    aria-label="GitHub">
+                                    <i class="fab fa-github text-lg"></i>
+                                </a>
+                            @endif
+
+                            @if($profile->instagram)
+                                <a href="{{ $profile->instagram }}" target="_blank" rel="noopener"
+                                    class="relative z-30 text-white hover:text-gray-200 transition p-2 rounded-full bg-white/5 hover:bg-white/10"
+                                    aria-label="Instagram">
+                                    <i class="fab fa-instagram text-lg"></i>
+                                </a>
+                            @endif
+                        </div>
+
+                        <!-- Mobile Menu Button -->
+                        <button id="mobileMenuBtn"
+                            class="relative z-30 lg:hidden p-2 rounded-md text-white hover:bg-white/10 focus:outline-none">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="text-gray-700 hover:text-blue-500 transition">Home</a>
-                <a href="#about" class="text-gray-700 hover:text-blue-500 transition">About</a>
-                <a href="#skills" class="text-gray-700 hover:text-blue-500 transition">Skills</a>
-                <a href="#projects" class="text-gray-700 hover:text-blue-500 transition">Projects</a>
-                <a href="#certificates" class="text-gray-700 hover:text-blue-500 transition">Certificates</a>
-                <a href="#education" class="text-gray-700 hover:text-blue-500 transition">Education</a>
-                <a href="#testimonials" class="text-gray-700 hover:text-blue-500 transition">Comment</a>
-                <a href="#contact" class="text-gray-700 hover:text-blue-500 transition">Contact</a>
-            </nav>
-            <button class="block md:hidden">
-                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
+        </div>
+
+        <!-- Mobile Menu (flattened) -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-blue-600/20 backdrop-blur-lg">
+            <div class="px-4 py-4 space-y-2 max-w-7xl mx-auto">
+                <a href="#home"
+                    class="block px-4 py-2 text-white/90 font-medium hover:bg-white/15 rounded transition">Home</a>
+                <a href="#about"
+                    class="block px-4 py-2 text-white/90 font-medium hover:bg-white/15 rounded transition">About</a>
+                <a href="#skills"
+                    class="block px-4 py-2 text-white/90 font-medium hover:bg-white/15 rounded transition">Skills</a>
+                <a href="#projects"
+                    class="block px-4 py-2 text-white/90 font-medium hover:bg-white/15 rounded transition">Projects</a>
+                <a href="#certificates"
+                    class="block px-4 py-2 text-white/90 font-medium hover:bg-white/15 rounded transition">Certificates</a>
+                <a href="#education"
+                    class="block px-4 py-2 text-white/90 font-medium hover:bg-white/15 rounded transition">Academic</a>
+                <a href="#testimonials"
+                    class="block px-4 py-2 text-white/90 font-medium hover:bg-white/15 rounded transition">Comment</a>
+                <a href="#contact"
+                    class="block px-4 py-2 text-white/90 font-medium hover:bg-white/15 rounded transition">Contact</a>
+            </div>
         </div>
     </header>
 
     <style>
         /* Calculate navbar height - adjust the value based on your navbar height */
         :root {
-            --navbar-height: 70px;
+            --navbar-height: 64px;
         }
 
-        /* Ensure the navbar stays on top with a higher z-index */
+        /* Enhanced glassmorphism effects */
         header {
             z-index: 9999 !important;
-            /* Override any other z-index */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* Force dropdown visibility on hover */
+        .group:hover .group-hover\:opacity-100 {
+            opacity: 1 !important;
+        }
+
+        .group:hover .group-hover\:visible {
+            visibility: visible !important;
+        }
+
+        .group:hover .group-hover\:translate-y-0 {
+            transform: translateY(0) !important;
+        }
+
+        /* Additional glassmorphism styling */
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
 
         /* Fix padding for the first section */
@@ -75,7 +182,34 @@
         #mobileMenu {
             z-index: 10000 !important;
         }
+
+        /* Dropdown animation */
+        .group:hover .group-hover\:visible {
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                // Close mobile menu when clicking a link
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+        });
+    </script>
 
     <!-- Hero Section with Enhanced Creative Blur Gradient Background (with wavy bottom) -->
     <section id="home" class="min-h-screen flex items-center relative overflow-hidden bg-transparent">
